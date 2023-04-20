@@ -1,10 +1,4 @@
-FROM ubuntu
-
-RUN sudo apt update
-RUN sudo apt install git
-RUN sudo apt install openjdk-17-jdk -y
-RUN sudo apt install maven -y
-
-CMD ["git","clone https://github.com/manishkumar201/maven.git"]
-CMD ["cd","maven"]
-CMD ["mvn","clean install"]
+FROM openjdk:17
+EXPOSE 8070
+ADD target/simple.project-0.0.1-SNAPSHOT.jar 
+ENTRYPOINT ["java","-jar","/simple.project-0.0.1-SNAPSHOT.jar "]
