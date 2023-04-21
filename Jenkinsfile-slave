@@ -1,0 +1,17 @@
+pipeline{
+    agent any
+    stages{
+        stage ("cleaning image if exist already"){
+            steps
+            {
+                sh 'docker rmi -f officialmanishkr98/maven:latest'
+            }
+        }
+        stage ("pulling image from dockerhub & deploying it"){
+            steps
+            {
+                sh 'docker run -d -p 8070:8070 officialmanishkr98/maven:latest'
+            }
+        }
+    }
+}
