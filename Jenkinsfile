@@ -31,10 +31,22 @@ pipeline
               sh 'docker build -t officialmanishkr98/maven:latest .'
           }
       }
-      stage ( 'cleaning all previous files'){
+      stage('Deploying the docker image'){
+          steps
+          {
+              sh 'docker run -p 8070:8070 officialmanishkr98/maven'
+          }
+      }
+      stage ( 'cleaning docker images'){
           steps
           {
               sh 'docker rmi -f officialmanishkr98/maven'
+          }
+      } 
+      stage('cleaning the workplace in the end'){
+          steps
+          {
+              sh 'rm -rf *'
           }
       }
       
