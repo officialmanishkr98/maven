@@ -24,14 +24,18 @@ pipeline
       {
           steps
           {
-              sh 'docker build -t officialmanishkr98/maven:latest .'
+              dockerImage = docker.build("officialmanishkr98/maven:latest")
           }
       }
-      stage( 'pushing image to dockerhub')
+        
+      stage('pushing image to dockerhub') 
       {
           steps
           {
-              sh 'docker push officialmanishkr98/maven:latest'
+              withDockerRegistry([ credentialsId: "dockerCred", url: "" ]) 
+              {
+                  dockerImage.push()
+              }
           }
       }
     }
