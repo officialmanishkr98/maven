@@ -31,7 +31,7 @@ pipeline
       {
           steps
           {
-              sh 'docker push officialmanishkr98/maven:latest .'
+              sh 'docker push officialmanishkr98/maven:latest'
           }
       }
     }
