@@ -28,7 +28,7 @@ pipeline
       {
           steps
           {
-              sh 'docker build -t officialmanishkr98/maven:latest .'
+              sh 'sudo docker build -t officialmanishkr98/maven:latest .'
           }
       }
       
