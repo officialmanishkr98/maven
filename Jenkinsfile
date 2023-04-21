@@ -1,7 +1,10 @@
 pipeline
 {
     agent any
-     
+    environment
+    {
+        DOCLERHUB_CRED = credentials('dockerCred')
+    }
     stages
     {
      
@@ -24,10 +27,15 @@ pipeline
       {
           steps
           {
-              script
-              {
-                  dockerImage = docker.build("officialmanishkr98/maven:latest")
-              }
+              sh 'docker build -t officialmanishkr98/maven:latest .'
+          }
+      }
+      
+      stage('login in to dockerhub')
+      {
+          steps
+          {
+              sh 'echo $DOCLERHUB_CRED_PSW | docker login -u $DOCLERHUB_CRED_USR --password-stdin'
           }
       }
         
@@ -35,13 +43,7 @@ pipeline
       {
           steps
           {
-              script
-              {
-                  withDockerRegistry([ credentialsId: "dockerCred", url: "" ]) 
-                  {
-                      dockerImage.push()
-                  }
-              }
+              sh 'docker push officialmanishkr98/maven:latest'
           }
       }
     }
