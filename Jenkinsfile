@@ -27,7 +27,7 @@ pipeline
               sh 'docker build -t officialmanishkr98/maven:latest .'
           }
       }
-      stage( 'building docker image with dockerfile')
+      stage( 'pushing image to dockerhub')
       {
           steps
           {
