@@ -24,7 +24,10 @@ pipeline
       {
           steps
           {
-              dockerImage = docker.build("officialmanishkr98/maven:latest")
+              script
+              {
+                  dockerImage = docker.build("officialmanishkr98/maven:latest")
+              }
           }
       }
         
@@ -32,9 +35,12 @@ pipeline
       {
           steps
           {
-              withDockerRegistry([ credentialsId: "dockerCred", url: "" ]) 
+              script
               {
-                  dockerImage.push()
+                  withDockerRegistry([ credentialsId: "dockerCred", url: "" ]) 
+                  {
+                      dockerImage.push()
+                  }
               }
           }
       }
