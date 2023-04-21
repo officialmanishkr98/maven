@@ -31,7 +31,7 @@ pipeline
               sh 'docker build -t officialmanishkr98/maven:latest .'
           }
       }
-      stage ( 'cleaning all previous files){
+      stage ( 'cleaning all previous files'){
           steps
           {
               sh 'docker rmi -f officialmanishkr98/maven'
