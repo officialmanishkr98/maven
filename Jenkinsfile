@@ -35,7 +35,9 @@ pipeline
       {
           steps
           {
-              sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+              sh 'echo username = $DOCKERHUB_CRED_USR && password = $DOCKERHUB_CRED_PSW 
+              //sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+              sh 'docker login -u $DOCKERHUB_CRED_USR --password $DOCKERHUB_CRED_PSW'
           }
       }
         
