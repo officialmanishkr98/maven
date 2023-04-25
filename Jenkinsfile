@@ -35,6 +35,7 @@ pipeline
       {
           steps
           {
+              sh 'echo $DOCKERHUB_CRED'
               sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
           }
       }
